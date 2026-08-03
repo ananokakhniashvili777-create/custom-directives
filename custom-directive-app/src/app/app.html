@@ -1,0 +1,31 @@
+<div style="padding: 20px; font-family: Arial, sans-serif;">
+  
+  <div 
+    [appHighlightCard]="product.isAvailable" 
+    [ngClass]="{'available-card': product.isAvailable, 'unavailable-card': !product.isAvailable}"
+    [ngStyle]="{'border-radius': '12px', 'box-shadow': '0 4px 8px rgba(0,0,0,0.1)'}"
+    class="product-card"
+  >
+    <img [src]="imageUrl" [alt]="product.name" class="product-image" />
+
+    <h2>{{ product.name }}</h2>
+    <p>ფასი: <strong>${{ product.price }}</strong></p>
+    
+    <p>
+      სტატუსი: 
+      <span [ngStyle]="{'font-weight': 'bold', 'color': product.isAvailable ? 'darkgreen' : 'darkred'}">
+        {{ product.isAvailable ? 'მარაგშია' : 'ამოწურულია' }}
+      </span>
+    </p>
+
+    <button [disabled]="!product.isAvailable" class="btn">
+      {{ product.isAvailable ? 'ყიდვა' : 'შეკვეთა შეუძლებელია' }}
+    </button>
+  </div>
+
+  <br />
+  <button (click)="toggleAvailability()" class="toggle-btn">
+    სტატუსის შეცვლა (Toggle Availability)
+  </button>
+
+</div>
